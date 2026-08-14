@@ -14,7 +14,7 @@ with open ('olist_products_dataset.csv', 'r', encoding='utf-8') as f:
 
     process_cols = ["product_weight_g","product_length_cm","product_height_cm","product_width_cm"]
     
-    medians = [calculate_median(f.sort_cols_median_preparation(col)) for col in process_cols]
+    medians = [calculate_median(sort_cols_median_preparation(col)) for col in process_cols]
     # Desempacota a lista diretamente nas variáveis m1, m2, m3 e m4
     m1, m2, m3, m4 = medians
     print(f"M1 (Peso): {m1}")
