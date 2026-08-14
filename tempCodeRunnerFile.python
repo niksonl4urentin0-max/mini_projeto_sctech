@@ -1,0 +1,7 @@
+texto = '''
+#Lógica de Regra de Negócio (Filtros e Validação): A diretoria identificou que muitas datas de entrega (order_delivered_customer_date) estão vazias. Utilizando estruturas condicionais (if/elif/else),
+
+
+
+'''
+print(texto.upper())

@@ -1,7 +1,9 @@
 import csv
-import re
-import datetime
-from funcoes import calculate_median, sort_cols_median_preparation, product_validations
+from funcoes import (product_validations, 
+                     calculate_median, 
+                     median_agregation, 
+                     clean_standart_string_str_lo_re, 
+                     total_processed_rows, count_null, canceled_order)
 
 
 
@@ -10,15 +12,22 @@ with open ('olist_products_dataset.csv', 'r', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     data = list(reader)    
     for row in data:        
-        product_validations(row) #CHAMANDO FUNCAO PARA TRATAR VALORES NULOS DE COLUNA product_category_name
+        product_validations(row) # CHAMANDO FUNCAO PARA TRATAR VALORES NULOS DA COLUNA PRODUCT_CATEGORY_NAME        
+        clean_standart_string_str_lo_re(row) # CHAMANDO FUNCAO PARA PADRONIZAR COLUNA PRODUCT_CATEGORY_NAME .STRIP(), .LOWER(), REGEX PARA RETIRAR CARACTERES ESPECIAIS
 
-    process_cols = ["product_weight_g","product_length_cm","product_height_cm","product_width_cm"]
-    
-    medians = [calculate_median(sort_cols_median_preparation(col)) for col in process_cols]
-    # Desempacota a lista diretamente nas variáveis m1, m2, m3 e m4
-    m1, m2, m3, m4 = medians
-    print(f"M1 (Peso): {m1}")
-    print(f"M2 (Comprimento): {m2}")
-    print(f"M3 (Altura): {m3}")
-    print(f"M4 (Largura): {m4}")
+    process_cols = ["product_weight_g","product_length_cm","product_height_cm","product_width_cm"]    
+    medians = [calculate_median(col, data) for col in process_cols]
+    results = [median_agregation(col, medians, data) for col in process_cols] #SUBSTITUI OS VALORES NULOS PELAS MEDIANAS
 
+# for result in results:
+#     for value in result:
+#         print(value, end='\n')
+
+print(total_processed_rows, count_null, canceled_order)
+#3. LÓGICA DE REGRA DE NEGÓCIO (FILTROS E VALIDAÇÃO)
+#ABRINDO O ARQUIVO COM FUNCAO NATIVA PYTHON WITH OPEN DA PLANILHA 
+# with open ('olist_orders_dataset.csv', 'r', encoding='utf-8') as z:
+#     reader2 = csv.DictReader(z)
+#     data2 = list(reader2)
+#     for row2 in data2:
+#         print(row2)
