@@ -4,7 +4,7 @@ import datetime
 from funcoes import calculate_median, sort_cols_median_preparation, product_validations
 
 
-  
+
 #ABRINDO O ARQUIVO COM FUNCAO NATIVA PYTHON WITH OPEN
 with open ('olist_products_dataset.csv', 'r', encoding='utf-8') as f:
     reader = csv.DictReader(f)

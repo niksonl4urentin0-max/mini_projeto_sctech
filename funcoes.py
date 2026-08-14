@@ -1,3 +1,4 @@
+data = []
 def product_validations(csv_row):
     # VALIDACAO E TRATAMENTO DE DADOS AUSENTES - COL_PRODUCT_CATEGORY_NAME
     if csv_row['product_category_name'].strip() == '':
@@ -6,12 +7,10 @@ def product_validations(csv_row):
         csv_row['product_category_name'] = csv_row['product_category_name'].strip()   
     return csv_row
 
-
 def sort_cols_median_preparation(column_name):
     return sorted([
         float(row[column_name]) 
-        for row in data 
-        if row[column_name] is not None and row[column_name].strip() != ''
+        for row in data if row[column_name] is not None and row[column_name].strip() != ''
         ])
 
 def calculate_median(sorted_list):
