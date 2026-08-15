@@ -7,7 +7,7 @@ from funcoes import (
     clean_standart_string_str_lo_re
 ) #IMPORTACOES DO MODULO FUNCOES.PY
 
-#CONTADORES PARA SUMARIO ESTATISTICO - 5. Relatório de Status Manual
+#CONTADORES PARA SUMARIO ESTATISTICO 
 count_null = 0 
 canceled_order = 0
 total_processed_rows = 0
@@ -24,12 +24,10 @@ with open('olist_products_dataset.csv', 'r', encoding='utf-8') as f:
         if valid:
             count_null += 1 #CASO O VALOR RETORNE TRUE SOMA O CONTADOR NULO        
             
-
         #2. Padronização de Strings e Regex:
         clean_standart_string_str_lo_re(row) # COLOQUEI ESSA FUNCAO PARA PADRONIZAR, .STRIP(), .LOWER() E REGEX
-
         total_processed_rows += 1 #SOMA TOTAL CONTADOR
-        
+
     process_cols = ["product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"]    
     medians = [calculate_median(col, data) for col in process_cols] # NESSA PARTE A LIST COMPREHENSION JOGA PARA A FUNCAO ORDENAR, 
     #TIRAR A MEDIDA E ARMAZENAR NA VARIVAVEL MEDIANS    
@@ -41,7 +39,6 @@ with open('olist_products_dataset.csv', 'r', encoding='utf-8') as f:
         median_agregation(col, medians, data) #NESSA PARTE A SEGUNDA FUNCAO AGREGA AOS VALORES NULOS, 
         #POIS DESEMPACOTA O VALOR INTERNAMENTE EM QUATRO VARIAVEIS INTERNAMENTE NA FUNCAO MEDIAN_AGREGATION
         
-
 # ABRINDO O ARQUIVO DE PEDIDOS
 with open('olist_orders_dataset.csv', 'r', encoding='utf-8') as z:
     reader2 = csv.DictReader(z)
