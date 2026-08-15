@@ -37,7 +37,7 @@ def median_agregation(column, medians_list, final_datalist):
     target_median = medians_dict.get(column) #ATRIBUI O VALOR PARA UMA VARIAVEL CONFORME O NOME DA COLUNA EM TRATAMENTO
     for row in final_datalist:
         if row[column] is None or row[column].strip() == '': # SE O VALOR ESTIVER VAZIO
-            row[column] = str(target_median) # PASSA O VALOR PARA A CELULA VAZIA
+            row[column] = target_median # PASSA O VALOR PARA A CELULA VAZIA
     return final_datalist # RETORNA O VALOR DO CSV TRATADO
 
 def clean_standart_string_str_lo_re (name_row):    
